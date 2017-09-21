@@ -7,16 +7,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-Spinner spinner1;
+    private Spinner spinner1;
+    private Toast toast1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
 
         spinner1 = (Spinner) findViewById(R.id.spinner1);
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -34,11 +37,13 @@ Spinner spinner1;
             Intent intent = new Intent(getApplicationContext(), NumberActivity.class);
             startActivity(intent);
         } else if(userSelection.equals("Distance")) {
-            Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
-            startActivity(intent);
+            toast1.show();
+            //Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
+            //startActivity(intent);
         } else if(userSelection.equals("Volume")) {
-            Intent intent = new Intent(getApplicationContext(), VolumeActivity.class);
-            startActivity(intent);
+            toast1.show();
+            //Intent intent = new Intent(getApplicationContext(), VolumeActivity.class);
+            //startActivity(intent);
         }
 
     }
