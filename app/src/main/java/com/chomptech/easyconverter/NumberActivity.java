@@ -57,7 +57,7 @@ public class NumberActivity extends AppCompatActivity {
             toast2.show();
         } else if (spinner1.getSelectedItem().toString().equals("Decimal") && spinner2.getSelectedItem().toString().equals("Hexadecimal")) {
 
-            if (!in.getText().toString().contains(".") && !in.getText().toString().contains("-")) {
+            if (in.getText().toString().matches("[0-9]+")) { //!in.getText().toString().contains(".") && !in.getText().toString().contains("-")
                 out.setText(decToHex(Integer.parseInt(in.getText().toString())));
             } else {
                 toast3.show();
