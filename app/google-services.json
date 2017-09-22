@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "47522749561",
+    "firebase_url": "https://easy-converter-1c7e2.firebaseio.com",
+    "project_id": "easy-converter-1c7e2",
+    "storage_bucket": "easy-converter-1c7e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47522749561:android:4e3f84e7b4e6656c",
+        "android_client_info": {
+          "package_name": "com.chomptech.easyconverter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47522749561-hpibrfdtvoeo70euu90fecrdevnf0c5m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chomptech.easyconverter",
+            "certificate_hash": "9c677dd4d9091638ce5ad856c395dc898334da0b"
+          }
+        },
+        {
+          "client_id": "47522749561-e8vvfc9u9ef3rjo0l82mt7a8sglpp8c2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjA1q5smkW-sVGpCpvbgjdDePBndyUEk8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47522749561-e8vvfc9u9ef3rjo0l82mt7a8sglpp8c2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
