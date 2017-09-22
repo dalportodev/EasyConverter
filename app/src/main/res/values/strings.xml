@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Easy Converter</string>
+    <string name="main_ad">ca-app-pub-9999083812241050/4800564764</string>
+    <string name="numbers_ad">ca-app-pub-9999083812241050/4919423185</string>
+    <string name="distance_ad">ca-app-pub-9999083812241050/7867529469</string>
+    <string name="volume_ad">ca-app-pub-9999083812241050/3414769821</string>
     <string-array name="choice_array">
         <item>Numbers</item>
         <item>Distance</item>

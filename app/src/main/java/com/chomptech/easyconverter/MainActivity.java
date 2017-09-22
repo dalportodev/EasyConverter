@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner1;
@@ -18,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-9999083812241050~1052891448");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
 
@@ -37,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), NumberActivity.class);
             startActivity(intent);
         } else if(userSelection.equals("Distance")) {
-            toast1.show();
-            //Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
-            //startActivity(intent);
+            //toast1.show();
+            Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
+            startActivity(intent);
         } else if(userSelection.equals("Volume")) {
-            toast1.show();
-            //Intent intent = new Intent(getApplicationContext(), VolumeActivity.class);
-            //startActivity(intent);
+            //toast1.show();
+            Intent intent = new Intent(getApplicationContext(), VolumeActivity.class);
+            startActivity(intent);
         }
 
     }

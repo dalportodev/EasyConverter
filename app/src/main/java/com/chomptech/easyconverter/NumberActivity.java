@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -15,15 +19,23 @@ public class NumberActivity extends AppCompatActivity {
 
     private Spinner spinner1, spinner2;
     private EditText in, out;
-    private Toast toast1, toast2;
+    private Toast toast1, toast2, toast3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
 
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-9999083812241050~5410910033");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
         toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
         toast2 = Toast.makeText(getApplicationContext(), ":/", Toast.LENGTH_LONG);
+        toast3 = Toast.makeText(getApplicationContext(), "Negative and right decimal numbers not yet supported.", Toast.LENGTH_LONG);
 
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);
@@ -45,9 +57,15 @@ public class NumberActivity extends AppCompatActivity {
             toast2.show();
         } else if (spinner1.getSelectedItem().toString().equals("Decimal") && spinner2.getSelectedItem().toString().equals("Hexadecimal")) {
 
-            out.setText(decToHex(Integer.parseInt(in.getText().toString())));
+            if (!in.getText().toString().contains(".") && !in.getText().toString().contains("-")) {
+                out.setText(decToHex(Integer.parseInt(in.getText().toString())));
+            } else {
+                toast3.show();
+            }
             //out.setText(String.valueOf(269));
 
+        } else {
+            toast1.show();
         }
     }
     public String decToHex(Integer val) {
