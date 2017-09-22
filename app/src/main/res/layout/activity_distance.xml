@@ -56,7 +56,7 @@
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="46dp"
-            android:text="Button"
+            android:text="Convert"
             android:onClick="convert"/>
 
         <com.google.android.gms.ads.AdView

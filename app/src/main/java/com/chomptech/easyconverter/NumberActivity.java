@@ -35,7 +35,7 @@ public class NumberActivity extends AppCompatActivity {
 
         toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
         toast2 = Toast.makeText(getApplicationContext(), ":/", Toast.LENGTH_LONG);
-        toast3 = Toast.makeText(getApplicationContext(), "Negative and right decimal numbers not yet supported.", Toast.LENGTH_LONG);
+        toast3 = Toast.makeText(getApplicationContext(), "Negative, right decimal numbers, and non-numerics not yet supported.", Toast.LENGTH_LONG);
 
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);

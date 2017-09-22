@@ -14,7 +14,8 @@ import com.google.android.gms.ads.MobileAds;
 
 public class VolumeActivity extends AppCompatActivity {
     private EditText in, out;
-    private Toast toast1;
+    private Toast toast1, toast2, toast3;
+    private Spinner spinner1, spinner2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,25 +27,189 @@ public class VolumeActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
-        toast1.show();
+        toast2 = Toast.makeText(getApplicationContext(), ":/", Toast.LENGTH_LONG);
+        toast3 = Toast.makeText(getApplicationContext(), "Please re enter using only one decimal in the format 1 or 1.33.", Toast.LENGTH_LONG);
+
 
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.volume_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner1.setAdapter(adapter);
 
-        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner2.setAdapter(adapter);
     }
     public void convert (View view) {
-        toast1.show();
+        //toast1.show();
+
+        int numDec = 0;
+        char[] temp = in.getText().toString().toCharArray();
+        for (int i = 0; i < in.getText().toString().length(); i++) {
+            if (temp[i] == '.') {
+                ++numDec;
+            }
+        }
+        if (numDec < 2) {
+
+            in.setText(in.getText().toString().replaceAll("[^0-9.]", ""));
+
+                if (spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
+                    toast2.show();
+                } else {
+                    switch (spinner1.getSelectedItem().toString()) {
+                        case "US Gallons": out.setText(convertGallon(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Quarts": out.setText(convertQuart(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Pints": out.setText(convertPint(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Cups": out.setText(convertCup(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Ounces": out.setText(convertOunce(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Tablespoons": out.setText(convertTable(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                        case "US Teaspoons": out.setText(convertTea(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                            break;
+                    }
+
+                }
+            } else {
+                toast3.show();
+            }
+
+    }
+    public String convertGallon(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 4.0;
+                break;
+            case "US Pints": result = temp * 8.0;
+                break;
+            case "US Cups": result = temp * 15.7725;
+                break;
+            case "US Ounces": result = temp * 128.0;
+                break;
+            case "US Tablespoons": result = temp * 256.0;
+                break;
+            case "US Teaspoons": result = temp * 768.0;
+        }
+        return String.valueOf(result);
+    }
+    public String convertQuart(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Gallons": result = temp * 0.25;
+                break;
+            case "US Pints": result = temp * 2.0;
+                break;
+            case "US Cups": result = temp * 3.94314;
+                break;
+            case "US Ounces": result = temp * 32;
+                break;
+            case "US Tablespoons": result = temp * 64.0;
+                break;
+            case "US Teaspoons": result = temp * 192.0;
+        }
+        return String.valueOf(result);
+    }
+    public String convertPint(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 0.5;
+                break;
+            case "US Gallons": result = temp * 0.125;
+                break;
+            case "US Cups": result = temp * 1.97157;
+                break;
+            case "US Ounces": result = temp * 16.0;
+                break;
+            case "US Tablespoons": result = temp * 32.0;
+                break;
+            case "US Teaspoons": result = temp * 96.0;
+        }
+        return String.valueOf(result);
+    }
+    public String convertCup(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 0.253605;
+                break;
+            case "US Pints": result = temp * 0.50721;
+                break;
+            case "US Gallons": result = temp * 0.0634013;
+                break;
+            case "US Ounces": result = temp * 8.11537;
+                break;
+            case "US Tablespoons": result = temp * 16.2307;
+                break;
+            case "US Teaspoons": result = temp * 48.6922;
+        }
+        return String.valueOf(result);
+    }
+    public String convertOunce(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 0.03125;
+                break;
+            case "US Pints": result = temp * 0.0625;
+                break;
+            case "US Cups": result = temp * 0.123223;
+                break;
+            case "US Gallons": result = temp * 0.0078125;
+                break;
+            case "US Tablespoons": result = temp * 2.0;
+                break;
+            case "US Teaspoons": result = temp * 6.0;
+        }
+        return String.valueOf(result);
+    }
+    public String convertTable(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 0.015625;
+                break;
+            case "US Pints": result = temp * 0.03125;
+                break;
+            case "US Cups": result = temp * 0.0616115;
+                break;
+            case "US Ounces": result = temp * 0.5;
+                break;
+            case "US Gallons": result = temp * 0.00390625;
+                break;
+            case "US Teaspoons": result = temp * 3.0;
+        }
+        return String.valueOf(result);
+    }
+    public String convertTea(String target, String val) {
+        Double temp = Double.parseDouble(val);
+        Double result = 0.0;
+        switch (target) {
+            case "US Quarts": result = temp * 0.00520833;
+                break;
+            case "US Pints": result = temp * 0.0104167;
+                break;
+            case "US Cups": result = temp * 0.0205372;
+                break;
+            case "US Ounces": result = temp * 0.166667;
+                break;
+            case "US Tablespoons": result = temp * 0.333333;
+                break;
+            case "US Gallons": result = temp * 0.00130208;
+        }
+        return String.valueOf(result);
     }
 }
