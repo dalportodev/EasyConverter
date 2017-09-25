@@ -2,6 +2,8 @@ package com.chomptech.easyconverter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -27,12 +29,29 @@ public class VolumeActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        toast2 = Toast.makeText(getApplicationContext(), ":/", Toast.LENGTH_LONG);
-        toast3 = Toast.makeText(getApplicationContext(), "Please re enter using only one decimal in the format 1 or 1.33.", Toast.LENGTH_LONG);
+        toast2 = Toast.makeText(getApplicationContext(), "Select a unit to convert to in second drop down menu.", Toast.LENGTH_LONG);
+        toast3 = Toast.makeText(getApplicationContext(), "Input must be in the format of 5 or 1.35", Toast.LENGTH_LONG);
 
 
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);
+
+        in.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                convert();
+            }
+        });
 
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -45,8 +64,15 @@ public class VolumeActivity extends AppCompatActivity {
 
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner2.setAdapter(adapter);
+
+        spinner2.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                convert();
+            }
+        });
     }
-    public void convert (View view) {
+    public void convert () {
         //toast1.show();
 
         int numDec = 0;
@@ -56,27 +82,34 @@ public class VolumeActivity extends AppCompatActivity {
                 ++numDec;
             }
         }
-        if (numDec < 2) {
+        if (!in.getText().toString().matches("[.]*")) {
+            if (numDec < 2 && !in.getText().toString().equals("") && in.getText().toString().matches("[0-9.]*")) { // && !in.getText().toString().contains("[^\\\\d.]")
 
-            in.setText(in.getText().toString().replaceAll("[^0-9.]", ""));
 
                 if (spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
                     toast2.show();
                 } else {
                     switch (spinner1.getSelectedItem().toString()) {
-                        case "US Gallons": out.setText(convertGallon(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Gallons":
+                            out.setText(convertGallon(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Quarts": out.setText(convertQuart(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Quarts":
+                            out.setText(convertQuart(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Pints": out.setText(convertPint(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Pints":
+                            out.setText(convertPint(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Cups": out.setText(convertCup(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Cups":
+                            out.setText(convertCup(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Ounces": out.setText(convertOunce(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Ounces":
+                            out.setText(convertOunce(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Tablespoons": out.setText(convertTable(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Tablespoons":
+                            out.setText(convertTable(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
-                        case "US Teaspoons": out.setText(convertTea(spinner2.getSelectedItem().toString(), in.getText().toString()));
+                        case "US Teaspoons":
+                            out.setText(convertTea(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
                     }
 
@@ -84,6 +117,9 @@ public class VolumeActivity extends AppCompatActivity {
             } else {
                 toast3.show();
             }
+        } else {
+            toast3.show();
+        }
 
     }
     public String convertGallon(String target, String val) {

@@ -2,6 +2,8 @@ package com.chomptech.easyconverter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -34,25 +36,43 @@ public class NumberActivity extends AppCompatActivity {
 
 
         toast1 = Toast.makeText(getApplicationContext(), "To be implemented in future update.", Toast.LENGTH_LONG);
-        toast2 = Toast.makeText(getApplicationContext(), ":/", Toast.LENGTH_LONG);
-        toast3 = Toast.makeText(getApplicationContext(), "Negative, right decimal numbers, and non-numerics not yet supported.", Toast.LENGTH_LONG);
+        toast2 = Toast.makeText(getApplicationContext(), "Select a unit to convert to in second drop down menu.", Toast.LENGTH_LONG);
+        toast3 = Toast.makeText(getApplicationContext(), "Non numeric and decimal values not supported.", Toast.LENGTH_LONG);
 
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);
 
+        in.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                convert();
+            }
+        });
+
         spinner1 = (Spinner) findViewById(R.id.spinner1);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.num_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner1.setAdapter(adapter);
 
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner2.setAdapter(adapter);
+
     }
-    public void convert (View view) {
+    public void convert () {
         if(spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
             toast2.show();
         } else if (spinner1.getSelectedItem().toString().equals("Decimal") && spinner2.getSelectedItem().toString().equals("Hexadecimal")) {

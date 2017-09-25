@@ -20,6 +20,7 @@
             android:layout_marginTop="49dp"
             android:ems="10"
             android:inputType="phone"
+            android:hint="Enter # to convert here"
             android:layout_below="@+id/spinner1"
             android:layout_centerHorizontal="true" />
 
@@ -47,6 +48,7 @@
             android:layout_below="@+id/spinner2"
             android:layout_marginTop="56dp"
             android:ems="10"
+            android:hint="Output (leave blank)"
             android:inputType="phone" />
 
         <Button
