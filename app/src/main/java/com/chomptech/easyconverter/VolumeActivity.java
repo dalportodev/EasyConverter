@@ -32,21 +32,18 @@ public class VolumeActivity extends AppCompatActivity {
         toast2 = Toast.makeText(getApplicationContext(), "Select a unit to convert to in second drop down menu.", Toast.LENGTH_LONG);
         toast3 = Toast.makeText(getApplicationContext(), "Input must be in the format of 5 or 1.35", Toast.LENGTH_LONG);
 
-
         in = (EditText)findViewById(R.id.editText1);
         out = (EditText)findViewById(R.id.editText2);
 
         in.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //nothing
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //nothing
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
                 convert();
@@ -73,7 +70,6 @@ public class VolumeActivity extends AppCompatActivity {
         });
     }
     public void convert () {
-        //toast1.show();
 
         int numDec = 0;
         char[] temp = in.getText().toString().toCharArray();
@@ -84,7 +80,6 @@ public class VolumeActivity extends AppCompatActivity {
         }
         if (!in.getText().toString().matches("[.]*")) {
             if (numDec < 2 && !in.getText().toString().equals("") && in.getText().toString().matches("[0-9.]*")) { // && !in.getText().toString().contains("[^\\\\d.]")
-
 
                 if (spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
                     toast2.show();
@@ -112,7 +107,6 @@ public class VolumeActivity extends AppCompatActivity {
                             out.setText(convertTea(spinner2.getSelectedItem().toString(), in.getText().toString()));
                             break;
                     }
-
                 }
             } else {
                 toast3.show();
@@ -120,7 +114,6 @@ public class VolumeActivity extends AppCompatActivity {
         } else {
             toast3.show();
         }
-
     }
     public String convertGallon(String target, String val) {
         Double temp = Double.parseDouble(val);
