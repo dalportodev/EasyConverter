@@ -70,11 +70,17 @@ public class NumberActivity extends AppCompatActivity {
 
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner2.setAdapter(adapter);
+        spinner2.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                convert();
+            }
+        });
 
     }
     public void convert () {
         if(spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
-            toast2.show();
+            //toast2.show();
         } else if (spinner1.getSelectedItem().toString().equals("Decimal") && spinner2.getSelectedItem().toString().equals("Hexadecimal")) {
 
             if (in.getText().toString().matches("[0-9]+")) { //!in.getText().toString().contains(".") && !in.getText().toString().contains("-")
