@@ -82,7 +82,7 @@ public class VolumeActivity extends AppCompatActivity {
             if (numDec < 2 && !in.getText().toString().equals("") && in.getText().toString().matches("[0-9.]*")) { // && !in.getText().toString().contains("[^\\\\d.]")
 
                 if (spinner1.getSelectedItem().toString().equals(spinner2.getSelectedItem().toString())) {
-                    toast2.show();
+
                 } else {
                     switch (spinner1.getSelectedItem().toString()) {
                         case "US Gallons":

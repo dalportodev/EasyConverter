@@ -48,7 +48,7 @@
             android:layout_below="@+id/spinner2"
             android:layout_marginTop="56dp"
             android:ems="10"
-            android:hint="Output (leave blank)"
+            android:hint="Output (select unit above)"
             android:inputType="phone" />
 
         <com.google.android.gms.ads.AdView
