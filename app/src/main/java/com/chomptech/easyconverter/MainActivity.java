@@ -62,13 +62,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), NumberActivity.class);
             startActivity(intent);
         } else if(userSelection.equals("Distance")) {
-            //toast1.show();
-            Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
-            startActivity(intent);
+            toast1.show();
+            //Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
+            //startActivity(intent);
         } else if(userSelection.equals("Volume")) {
             //toast1.show();
             Intent intent = new Intent(getApplicationContext(), VolumeActivity.class);
             startActivity(intent);
+        } else {
+            toast1.show();
         }
     }
 // add methods to change activities
